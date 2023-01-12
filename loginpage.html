@@ -1,0 +1,64 @@
+<!-- Create simple login page using html & css -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <style>
+        body {
+            background-color: rgb(210, 210, 240);
+        }
+       
+        #companyName{
+            color:blue;
+            text-align: center;
+        }
+
+        #loginPage {
+            background-color: white;
+            text-align: center;
+            display: block;
+            margin: auto;
+            height: 220px;
+            width: 200px;
+            border: 0px;
+            border-radius: 5px;
+            box-shadow: 5px 5px 5px 5px rgb(192, 192, 192);
+        }
+
+        #submitId {
+            height: 30px;
+            width: 188px;
+            background-color: rgb(109, 109, 243);
+            border: 0px;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h3 id="companyName">COMPANY</h3>
+    <div id="loginPage">
+        <br>
+        <h4 id="login to page"> Login in to COMPANY</h4>
+
+        <input type="email" name="email" placeholder="Enter email">
+        <br><br>
+
+        <input type="password" name="password"
+        placeholder="Enter password">
+        <br><br>
+
+        <input type="submit" name="submit" id="submitId">
+        <br>
+
+        <a href="#forgotPassword">Forgotten Password?</a>
+        
+        <a href="Sign up ">Sign up</a>
+    </div>
+</body>
+</html>
