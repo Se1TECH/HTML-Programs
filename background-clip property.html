@@ -1,0 +1,44 @@
+<!-- Use of CSS background-clip property -->
+<!-- border-box| padding-box| content-box|  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>background clip</title>
+    <style>
+        body{
+            text-align: center;
+        }
+
+        /* Use of border box */
+        #id1{
+            background-color: blue;
+            border: 5px dotted black;
+            background-clip: border-box; 
+        }
+
+        /* Use of padding box */
+        #id2{
+            background-color: rgb(89, 255, 0);
+            border: 5px dotted black;
+            background-clip: padding-box; 
+        }
+
+        /* Use of content box */
+        #id3{
+            background-color: rgb(255, 234, 0);
+            border: 5px dotted black;
+            background-clip: content-box; 
+        }
+        
+    </style>
+</head>
+<body>
+    <h1 id="id1">Use of Border Box </h1>
+    <h1 id="id2">Use of padding Box</h1>    
+    <h1 id="id3">Use of content-box</h1>    
+</body>
+</html>
