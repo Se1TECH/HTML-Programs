@@ -1,0 +1,37 @@
+<!-- Use of CSS text-overflow property -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Overflow property</title>
+    <style>
+        div{
+            text-align: center;
+            margin: 40px;
+            border: 2px solid black;
+            padding: 20px;
+            height: 20px;
+            width: 50px;
+            overflow: hidden;
+        }
+
+        #id1{
+            text-overflow: clip;
+        }
+
+        #id2{
+            text-overflow: ellipsis;
+        }
+
+        div:hover{
+            overflow: visible;
+        }
+    </style>
+</head>
+<body>
+    <div id="id1">Welcome to my new video1</div>
+    <div id="id2">Welcome to my new video2</div>
+</body>
+</html>
