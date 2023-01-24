@@ -1,0 +1,45 @@
+<!-- Use of CSS writing-mode property. -->
+<!-- horizonatl-tb,vertical-rl,vertical-lr -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing mode </title>
+    <style>
+        body{
+            text-align: center;
+        }
+        p{
+            margin: 20px;
+            border: 1px solid black;
+            height: 250px;
+            width: 250px;
+            text-align: center;
+        }
+
+        #id1{
+            writing-mode: horizontal-tb;
+        }
+
+        #id2{
+            writing-mode: vertical-lr;
+        }
+
+        #id3{
+            writing-mode: vertical-rl;
+        }
+
+    </style>
+</head>
+<body>
+    <p id="id1">The first version of HTML was written by Tim Berners-Lee in 1993. Since then, there have been many different versions of HTML. The most widely used version throughout the 2000's was HTML 4.01, which became an official standard in December 1999. Another version, XHTML, was a rewrite of HTML as an XML language.</p>
+    
+    <p id="id2">The first version of HTML was written by Tim Berners-Lee in 1993. Since then, there have been many different versions of HTML. The most widely used version throughout the 2000's was HTML 4.01, which became an official standard in December 1999. Another version, XHTML, was a rewrite of HTML as an XML language.</p>
+
+    <p id="id3">The first version of HTML was written by Tim Berners-Lee in 1993. Since then, there have been many different versions of HTML. The most widely used version throughout the 2000's was HTML 4.01, which became an official standard in December 1999. Another version, XHTML, was a rewrite of HTML as an XML language.</p>
+
+
+</body>
+</html>
