@@ -1,0 +1,52 @@
+<!-- Use of CSS radial-gradient function  -->
+<!-- farthest-side at left bottom
+farthest-corner at right bottom
+closest-side
+closest-corner -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>radial radial-gradient function</title>
+    <style>
+        #id1{   
+            height: 200px;
+            width: 200px;
+            margin:20px;
+            background-image: radial-gradient(farthest-side at left bottom,red,blue,green);
+        }
+        
+        #id2{   
+            height: 200px;
+            width: 200px;
+            margin:20px;
+            background-image: radial-gradient(farthest-corner at right bottom,rgb(123, 255, 0),rgb(255, 68, 0),rgb(0, 255, 242));
+        }
+
+        #id3{   
+            height: 200px;
+            width: 200px;
+            margin:20px;
+            background-image: radial-gradient(closest-side,rgb(123, 255, 0),rgb(255, 68, 0),rgb(0, 255, 242));
+        }
+
+        #id4{   
+            height: 200px;
+            width: 200px;
+            margin:20px;
+            background-image: radial-gradient(closest-corner,rgb(0, 255, 217),rgb(255, 0, 157),rgb(255, 200, 0));
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="id1"></div>
+    <div id="id2"></div>
+    <div id="id3"></div>
+    <div id="id4"></div>
+</body>
+</html>
