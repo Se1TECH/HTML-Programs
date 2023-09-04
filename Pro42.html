@@ -1,0 +1,80 @@
+<!-- simple to-do list -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        .container{
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 100px;
+        }
+        
+        input{
+            width: 200px;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+
+        button{
+            padding: 5px 10px;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li{
+            margin-bottom: 5px;
+        }
+
+        li span{
+            margin-right: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To-do List </h1>
+        <input type="text" id="taskInput" placeholder="Add Your task">
+
+        <button id="addButton">Add</button>
+        <ul id="taskList"></ul>
+    </div>
+
+</body>
+
+    <script>
+        document.getElementById("addButton").addEventListener("click",function(){
+            var taskInput = document.getElementById("taskInput");
+            var taskList = document.getElementById("taskList");
+
+
+            if(taskInput.value !== ""){
+                var taskItem = document.createElement("li");
+                var taskText = document.createTextNode(taskInput.value);
+                var taskDelete = document.createElement("span");
+                var taskDeleteText = document.createTextNode("  X");
+
+                taskDelete.className = "delete";
+                taskDelete.appendChild(taskDeleteText);
+                taskItem.appendChild(taskText);
+                taskItem.appendChild(taskDelete);
+                taskList.appendChild(taskItem);
+
+                taskInput.value = "";
+                taskDelete.addEventListener("click",function(){
+                    taskList.removeChild(taskItem);
+                });
+
+            }
+        })
+    </script>
+
+</html>
