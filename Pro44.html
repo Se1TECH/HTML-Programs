@@ -1,0 +1,76 @@
+<!-- Image Gallery -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+
+    <style>
+        .container{
+            width:800px;
+            margin:0 auto;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1{
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .thumbnails img{
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .preview img {
+            width: 400px;
+            height: 400px;
+        }
+
+        .preview {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Gallery</h1>
+        <div class="gallery">
+            <div class="thumbnails">
+                <img src="image1.jpg" alt="Image 1" onclick="displayImage(1)">
+                
+                <img src="image2.jpg" alt="Image 2" onclick="displayImage(2)">
+                
+                <img src="image3.jpg" alt="Image 3" onclick="displayImage(3)">
+
+            </div>
+
+            <div class="preview">
+                <img id="previewImage" src="image1.jpg" alt="Image 1">
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    function displayImage(imageNumber) {
+        var previewImage = document.getElementById('previewImage');
+        previewImage.src = `image${imageNumber}.jpg`;
+    }
+</script>
+</html>
