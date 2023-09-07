@@ -1,0 +1,132 @@
+<!-- quiz application  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application</title>
+    <style>
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #question {
+            margin-bottom: 20px;
+        }
+
+        #options button {
+            margin-bottom: 10px;
+        }
+
+        #nextButton {
+            padding: 5px 10px;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Quiz Application</h1>
+        <div id="question"></div>
+        <div id="options"></div>
+        <button id="nextButton">Next</button>
+        <div id="result"></div>
+    </div>
+
+</body>
+
+<script>
+    var questions = [
+        {
+            question: "What is the capital of France?",
+            options: ["Paris", "London", "Berlin", "Rome"],
+            answer: 0
+        },
+        {
+            question: "What is the largest planet in our solar system?",
+            options: ["Mars", "Venus", "Jupiter", "Saturn"],
+            answer: 2
+        },
+        {
+            question: "Who painted the Mona Lisa?",
+            options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"],
+            answer: 2
+        }
+    ];
+
+    var currentQuestion = 0;
+    var score = 0;
+
+    var questionElement = document.getElementById("question");
+    var optionsElement = document.getElementById("options");
+    var nextButton = document.getElementById("nextButton");
+    var resultElement = document.getElementById("result");
+
+    function displayQuestion() {
+        var question = questions[currentQuestion];
+        questionElement.textContent = question.question;
+
+        optionsElement.innerHTML = "";
+        for (var i = 0; i < question.options.length; i++) {
+            var button = document.createElement("button");
+            button.textContent = question.options[i];
+            button.addEventListener("click", checkAnswer);
+            optionsElement.appendChild(button);
+        }
+
+        nextButton.disabled = true;
+        resultElement.textContent = "";
+    }
+
+    function checkAnswer(event) {
+        var selectedOption = event.target;
+        var question = questions[currentQuestion];
+
+        if (selectedOption.textContent === question.options[question.answer]) {
+            score++;
+            resultElement.textContent = "Correct!";
+        } else {
+            resultElement.textContent = "Incorrect!";
+        }
+
+        nextButton.disabled = false;
+    }
+
+    function nextQuestion() {
+        currentQuestion++;
+
+        if (currentQuestion < questions.length) {
+            displayQuestion();
+        } else {
+            displayResult();
+        }
+    }
+
+    function displayResult() {
+        questionElement.textContent = "Quiz Completed";
+        optionsElement.innerHTML = "";
+        nextButton.style.display = "none";
+        resultElement.textContent = "Your Score: " + score + " out of " + questions.length;
+    }
+
+    displayQuestion();
+    nextButton.addEventListener("click", nextQuestion);
+
+
+
+
+</script>
+
+</html>
