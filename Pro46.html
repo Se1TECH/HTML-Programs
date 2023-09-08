@@ -1,0 +1,109 @@
+<!-- Note taking application using javascript. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Taking App</title>
+    <style>
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #noteForm {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            width: 200px;
+        }
+
+        button {
+            padding: 5px 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Note Taking App</h1>
+        <form id="noteForm">
+            <input type="text" id="noteInput" placeholder="Enter a note">
+            <button type="submit">Add Note</button>
+        </form>
+        <ul id="noteList"></ul>
+    </div>
+</body>
+
+<script>
+    var noteForm = document.getElementById('noteForm');
+    var noteInput = document.getElementById('noteInput');
+    var noteList = document.getElementById('noteList');
+
+    noteForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var note = noteInput.value.trim();
+        if (note !== '') {
+            addNote(note);
+            noteInput.value = '';
+        }
+    });
+
+    function addNote(note) {
+        var li = document.createElement('li');
+        li.textContent = note;
+
+        var editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.addEventListener('click', function () {
+            editNote(li);
+        });
+
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', function () {
+            deleteNote(li);
+        });
+
+        li.appendChild(editButton);
+        li.appendChild(deleteButton);
+
+        noteList.appendChild(li);
+    }
+
+    function editNote(noteElement) {
+        var newNote = prompt('Edit the note:', noteElement.textContent.trim());
+        if (newNote !== null && newNote !== '') {
+            noteElement.textContent = newNote;
+            
+        }
+    }
+
+    function deleteNote(noteElement) {
+        if (confirm('Are you sure you want to delete this note?')) {
+            noteElement.parentNode.removeChild(noteElement);
+        }
+    }
+</script>
+
+</html>
