@@ -1,0 +1,97 @@
+<!-- Random Quote Generator -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quotes Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .quote {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        blockquote {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        p {
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Random Quote Generator</h1>
+        <div class="quote">
+            <blockquote id="quoteText"></blockquote>
+            <p id="quoteAuthor">
+            </p>
+        </div>
+        <button id="generateButton">
+            Generate Quote
+        </button>
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const quoteText = document.getElementById('quoteText');
+        const quoteAuthor = document.getElementById('quoteAuthor');
+        const generateBtn = document.getElementById('generateButton');
+
+        generateBtn.addEventListener('click', fetchQuote);
+
+        function fetchQuote() {
+            fetch('https://api.quotable.io/random')
+                .then(response => response.json())
+                .then(data => {
+                    quoteText.textContent = data.content;
+                    quoteAuthor.textContent = `- ${data.author}`;
+                })
+                .catch(error => {
+                    quoteText.textContent = 'Failed to fetch quote.';
+                    quoteAuthor.textContent = '';
+                });
+        }
+
+        fetchQuote();
+    });
+
+</script>
+
+</html>
