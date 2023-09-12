@@ -1,0 +1,90 @@
+<!-- Photo Slide Show using javascript. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Slide Show</title>
+    <style>
+        .container{
+            width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .slideShow{
+            position: relative;
+        }
+
+        #photo {
+            width: 100%;
+            height: 400px;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        button{
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Photo Slide Show</h1>
+        <div class="slideShow">
+            <img src="image1.jpg" alt="image" id="photo">
+            <div class="controls">
+                <button onclick="previousPhoto()">&lt; Previous</button>
+                <button onclick="nextPhoto()"> Next &gt;</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    var photos = [
+        'image1.jpg',
+        'image2.jpg',
+        'image3.jpg',
+    ]
+
+    var currentPhotoIndex = 0;
+    var photoElement = document.getElementById('photo');
+
+    function showPhoto() {
+        photoElement.src = photos[currentPhotoIndex];
+    }
+
+    function nextPhoto() {
+        currentPhotoIndex++;
+        if(currentPhotoIndex >= photos.length) {
+            currentPhotoIndex = 0;
+        }
+        showPhoto();
+    }
+
+    function previousPhoto(){
+        currentPhotoIndex--;
+        if(currentPhotoIndex < 0) {
+            currentPhotoIndex = photos.length-1;
+        }
+        showPhoto();
+    }
+
+    showPhoto();
+</script>
+</html>
