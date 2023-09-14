@@ -1,0 +1,123 @@
+<!-- image to view it in a larger size using javscript -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery </title>
+    <style>
+        .container {
+            width: 800px;
+            margin:0 auto;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: inline-block;
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 10px;
+        }
+
+        .grid-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 350px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .grid-item img:hover {
+            transform: scale(1.1);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 9999;
+        }
+
+        .lightbox img{
+            display: block;
+            margin: 0 auto;
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 10%;
+        }
+
+        .close {
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Gallery</h1>
+        <div class="gallery">
+            <div class="grid">
+                <div class="grid-item">
+                    <img src="image1.jpg" alt="Image1" srcset="">
+                </div>
+
+                <div class="grid-item">
+                    <img src="image2.jpg" alt="Image2" srcset="">
+                </div>
+
+                <div class="grid-item">
+                    <img src="image3.jpg" alt="Image3" srcset="">
+                </div>
+            </div>
+
+            <div id="lightbox" class="lightbox">
+                <span class="close" onclick="closelightbox()">&times;</span>
+                <img src="" id="lightboxImage" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const gridItem = document.querySelectorAll(".grid-item");
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+
+    gridItem.forEach((item) =>{
+        item.addEventListener('click', () =>{
+            const imgsrc = item.querySelector('img').src;
+            lightboxImage.src = imgsrc;
+            lightbox.style.display = 'block'; 
+        });
+    });
+
+    function closelightbox() {
+        lightbox.style.display = 'none';
+    }
+</script>
+</html>
