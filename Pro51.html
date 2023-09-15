@@ -1,0 +1,148 @@
+<!-- Stop Watch -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <style>
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .stopwatch {
+            margin-bottom: 20px;
+        }
+
+        #timer {
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #7bff10;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:last-child {
+            margin-right: 0;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>StopWatch</h1>
+        <div class="stopwatch">
+            <spn id="timer">00:00:00</spn>
+            <div class="buttons">
+                <button id="startButton" onclick="start()">Start</button>
+                <button id="pauseButton" onclick="pause()">Pause</button>
+                <button id="resumeButton" onclick="resume()">Resume</button>
+                <button id="resetButton" onclick="reset()">Reset</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let timerInterval;
+    let startTime;
+    let elapsedTime = 0;
+    let isRunning = false;
+
+    const timerElement = document.getElementById('timer');
+    const startButton = document.getElementById('startButton');
+    const pauseButton = document.getElementById('pauseButton');
+    const resumeButton = document.getElementById('resumeButton');
+    const resetButton = document.getElementById('resetButton');
+
+    function start() {
+        if (!isRunning) {
+            startTime = Date.now() - elapsedTime;
+            timerInterval = setInterval(updateTimer, 10);
+            isRunning = true;
+            startButton.disabled = true;
+            pauseButton.disabled = false;
+            resumeButton.disabled = true;
+            resetButton.disabled = true;
+        }
+    }
+
+    function pause() {
+        if (isRunning) {
+            clearInterval(timerInterval);
+            isRunning = false;
+            pauseButton.disabled = true;
+            resumeButton.disabled = false;
+            resetButton.disabled = false;
+        }
+    }
+
+    function resume() {
+        if (!isRunning) {
+            startTime = Date.now() - elapsedTime;
+            timerInterval = setInterval(updateTimer, 10);
+            isRunning = true;
+            pauseButton.disabled = false;
+            resumeButton.disabled = true;
+            resetButton.disabled = true;
+        }
+    }
+
+    function reset() {
+        clearInterval(timerInterval);
+        elapsedTime = 0;
+        updateTimer();
+        isRunning = false;
+        startButton.disabled = false;
+        pauseButton.disabled = true;
+        resumeButton.disabled = true;
+        resetButton.disabled = true;
+    }
+
+    function updateTimer() {
+        const elapsedMilliseconds = Date.now() - startTime;
+        elapsedTime = elapsedMilliseconds;
+        const milliseconds = Math.floor((elapsedMilliseconds % 1000) / 10);
+        const seconds = Math.floor((elapsedMilliseconds / 1000) % 60);
+        const minutes = Math.floor((elapsedMilliseconds / (1000 * 60)) % 60);
+        const hours = Math.floor((elapsedMilliseconds / (1000 * 60 * 60)) % 24);
+
+        timerElement.textContent = formatTime(hours, minutes, seconds, milliseconds);
+    }
+
+    function formatTime(hours, minutes, seconds, milliseconds) {
+        return `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}:${padZero(milliseconds)}`;
+    }
+
+    function padZero(number) {
+        return number.toString().padStart(2, '0');
+    }
+
+</script>
+
+</html>
