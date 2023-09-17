@@ -1,0 +1,99 @@
+<!-- Tabbed Content using html,css and javascript -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabbed Content</title>
+    <style>
+        .container{
+            width: 800px;
+            margin: 0 auto;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .tabs {
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .tab:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        .tab.active {
+            background-color: #0056b3;
+        }
+
+        .content{
+            text-align: left;
+        } 
+
+        .tab-content{
+            display: none;
+        }
+
+        .tab-content.show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tabbed Content</h1>
+        <div class="tabs">
+            <button class="tab" onclick="changeTab(1)">Tab 1</button>
+            <button class="tab" onclick="changeTab(2)">Tab 2</button>
+            <button class="tab" onclick="changeTab(3)">Tab 3</button>
+        </div>
+
+        <div class="content">
+            <div class="tab-content" id="tabContent1">
+                <h2>Tab 1 Content</h2>
+                <p>This is the content of tab 1</p>
+            </div>
+
+            <div class="tab-content" id="tabContent2">
+                <h2>Tab 2 Content</h2>
+                <p>This is the content of tab 2</p>
+            </div>
+
+            <div class="tab-content" id="tabContent3">
+                <h2>Tab 3 Content</h2>
+                <p>This is the content of tab 3</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    var tabs = document.getElementsByClassName('tab');
+    var tabContents = document.getElementsByClassName('tab-content');
+
+    function changeTab(tabIndex){
+        for(var i = 0; i < tabs.length; i++){
+            if(i == tabIndex - 1){
+                tabs[i].classList.add('active');
+                tabContents[i].classList.add('show');
+            }else {
+                tabs[i].classList.remove('active');
+                tabContents[i].classList.remove('show');
+            }
+        }
+    }
+</script>
+</html>
