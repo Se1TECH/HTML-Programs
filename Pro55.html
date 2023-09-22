@@ -1,0 +1,100 @@
+<!-- Countdown timer using html,css and javascript. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+        }
+
+        #countdown {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #timer {
+            font-size: 3em;
+            margin: 20px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        button {
+            font-size: 1.5em;
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="countdown">
+        <h1>Countdown Timer</h1>
+        <div id="timer">
+            <span id="hours">00</span>: <span id="minutes">00</span>: <span id="seconds">00</span>
+        </div>
+        <button id="start" onclick="startTimer()">Start</button>
+        <button id="stop" onclick="stopTimer()" disabled>Stop</button>
+    </div>
+</body>
+<script>
+    var hours = document.getElementById("hours");
+    var minutes = document.getElementById("minutes");
+    var seconds = document.getElementById("seconds");
+    var startButton = document.getElementById("start");
+    var stopButton = document.getElementById("stop");
+    
+    function startTimer(){
+        var totalSeconds = 0;
+        var targetTime = new Date();
+        targetTime.setHours(targetTime.getHours() +1);
+        startButton.disabled = true;
+        stopButton.disabled = false;
+
+        timeInterval = setInterval(function(){
+            var now = new Date();
+            totalSeconds = Math.floor((targetTime - now)/ 1000);
+            if(totalSeconds < 0){
+                stopTimer();
+                return;
+            }
+
+            var  h = Math.floor(totalSeconds / 3600);
+            var  m = Math.floor((totalSeconds % 3600)/60);
+            var s = totalSeconds % 60;
+
+            hours.innerHTML = h < 10 ? "0" + h : h;
+            minutes.innerHTML = m < 10 ? "0" + m : m;
+            seconds.innerHTML = s < 10 ? "0" + s : s;
+        },1000);
+    }
+
+    function stopTimer() {
+        clearInterval(timeInterval);
+        hours.innerHTML = "00";
+        minutes.innerHTML = "00";
+        seconds.innerHTML = "00";
+        startButton.disabled = false;
+        stopButton.disabled = true;
+    }
+
+</script>
+</html>
