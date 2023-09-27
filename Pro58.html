@@ -1,0 +1,107 @@
+<!-- Drag and drop using html, css and javascript. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop Image </title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .drop-zone {
+            border: 2px dashed #aaa;
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .drop-zone.highlight {
+            background-color: #e0e0e0;
+        }
+
+        #preview {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .preview-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Drag and Drop Image </h1>
+
+    <div class="drop-zone" id="dropZone">
+        <p>Drag and drop images here or click to browse</p>
+        <input type="file" id="fileInput" multiple style="display: none;">
+    </div>
+
+    <div id="preview"></div>
+
+    <script>
+        const dropZone = document.getElementById("dropZone");
+        const fileInput = document.getElementById("fileInput");
+        const preview = document.getElementById("preview");
+
+        dropZone.addEventListener("dragover", (event) => {
+            event.preventDefault();
+            dropZone.classList.add("highlight");
+        });
+
+        dropZone.addEventListener("dragleave", () => {
+            dropZone.classList.remove("highlight");
+        });
+
+        dropZone.addEventListener("drop", (event) => {
+            event.preventDefault();
+            dropZone.classList.remove("highlight");
+            const files = event.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        dropZone.addEventListener("click", () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener("change", () => {
+            const files = fileInput.files;
+            handleFiles(files);
+        });
+
+        function handleFiles(files) {
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (file.type.startsWith("image/")) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        const imageUrl = event.target.result;
+                        const image = document.createElement("img");
+                        image.classList.add("preview-image");
+                        image.src = imageUrl;
+                        preview.appendChild(image);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
